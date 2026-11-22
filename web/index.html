@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F4F2EC">
+<meta name="description" content="PodoTrace — Plateforme intelligente de télésurveillance et de diagnostic des ulcères du pied diabétique.">
+<title>PodoTrace — Télésurveillance & Diagnostic du Pied Diabétique</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233F6152'/%3E%3Cpath d='M16 8c3.6 0 6 2.2 6 5.4 0 2-1 3.2-1 4.6 0 1.6 1.4 2.4 1.4 4.4 0 2.4-2.6 4-6.4 4s-6.4-1.6-6.4-4c0-2 1.4-2.8 1.4-4.4 0-1.4-1-2.6-1-4.6C10 10.2 12.4 8 16 8z' fill='%23F6F4EE'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/app.css?v=20261117d">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+<!-- ══════════════ Icônes (sprite inline, aucun réseau) ══════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-home" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.6V21h13V9.6"/><path d="M10 21v-6h4v6"/></g>
+    <g id="i-chart" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 5-8 4 5"/><path d="M3 21h18"/></g>
+    <g id="i-chat" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l.9-4.4A8 8 0 1 1 20 12z"/><path d="M9 11h6M9 14.5h4"/></g>
+    <g id="i-map" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v14L9 18l6 2.5 6-2.5v-14L15 6.5 9 4z"/><path d="M9 4v14M15 6.5v14"/></g>
+    <g id="i-users" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20a6.2 6.2 0 0 1 12.4 0"/><path d="M16.4 5.2a3.4 3.4 0 0 1 0 6.4M17.6 14.4A6.2 6.2 0 0 1 21.2 20"/></g>
+    <g id="i-user" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.4" r="3.6"/><path d="M5 20.4a7 7 0 0 1 14 0"/></g>
+    <g id="i-camera" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5h3.2L8 6h8l1.8 2.5H21V20H3z"/><circle cx="12" cy="13.8" r="3.4"/></g>
+    <g id="i-upload" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M7.5 8.5 12 4l4.5 4.5"/><path d="M4 16v3.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V16"/></g>
+    <g id="i-alert" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6 2.8 20h18.4z"/><path d="M12 9.4v4.6"/><circle cx="12" cy="17.2" r=".9" fill="currentColor" stroke="none"/></g>
+    <g id="i-check" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.8"/></g>
+    <g id="i-info" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"/></g>
+    <g id="i-lock" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.4"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><path d="M12 14.4v2.4"/></g>
+    <g id="i-shield" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 6v6c0 4.8-3.4 7.8-8 9-4.6-1.2-8-4.2-8-9V6z"/><path d="M9 12l2.2 2.2L15.4 10"/></g>
+    <g id="i-plus" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5.5v13M5.5 12h13"/></g>
+    <g id="i-arrow" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="M13.5 6l6 6-6 6"/></g>
+    <g id="i-back" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12h-15"/><path d="M10.5 6l-6 6 6 6"/></g>
+    <g id="i-close" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></g>
+    <g id="i-doc" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h7.5L18 7.5V21H6z"/><path d="M13.5 3v4.5H18"/><path d="M9 12.5h6M9 16h4"/></g>
+    <g id="i-phone" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 4h3l1.8 4.4-2 1.3a11.5 11.5 0 0 0 5.9 5.9l1.3-2L20 15.5v3.2a1.9 1.9 0 0 1-2.1 1.9A16.8 16.8 0 0 1 3.6 6.1 1.9 1.9 0 0 1 5.5 4z"/></g>
+    <g id="i-nav" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 3.5 3.6 10.2l7.1 2.9 2.9 7.2z"/></g>
+    <g id="i-foot" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.9 12.6c-.9 1-1.4 2.2-1.4 3.4 0 2.2 2.4 3.6 6.5 3.6s6.5-1.4 6.5-3.6c0-1.2-.5-2.4-1.4-3.4-1.1-1.3-1.6-2.3-1.6-3.6 0-1.5-1.4-2.4-3.5-2.4s-3.5.9-3.5 2.4c0 1.3-.5 2.3-1.6 3.6z"/><ellipse cx="8.2" cy="6.1" rx="1.35" ry="1.75"/><ellipse cx="11.5" cy="4.4" rx="1.25" ry="1.85"/><ellipse cx="14.8" cy="5.4" rx="1.15" ry="1.6"/><ellipse cx="17.3" cy="8.4" rx="1" ry="1.35"/></g>
+    <g id="i-heart" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.2-4.5-7.2-9.2A4.1 4.1 0 0 1 12 8.2a4.1 4.1 0 0 1 7.2 2.6C19.2 15.5 12 20 12 20z"/></g>
+    <g id="i-settings" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.1"/><path d="M12 2.8v2.4M12 18.8v2.4M4.5 12H2.1M21.9 12h-2.4M6.7 6.7 5 5M19 19l-1.7-1.7M6.7 17.3 5 19M19 5l-1.7 1.7"/></g>
+    <g id="i-logout" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4.5H5.5A1.5 1.5 0 0 0 4 6v12a1.5 1.5 0 0 0 1.5 1.5H14"/><path d="M17 8.5 20.5 12 17 15.5M9.5 12h11"/></g>
+    <g id="i-sun" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M5.6 18.4l1.6-1.6M16.8 7.2l1.6-1.6"/></g>
+    <g id="i-spark" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l1.8 5 5 1.8-5 1.8-1.8 5-1.8-5-5-1.8 5-1.8z"/></g>
+    <g id="i-send" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l16-7-6.2 16-2.6-6.6z"/></g>
+  </defs>
+</svg>
+
+<div id="root"></div>
+<div id="modal-root"></div>
+<div class="toasts" id="toasts"></div>
+
+<script type="module" src="/js/app.js?v=20261117d"></script>
+</body>
+</html>

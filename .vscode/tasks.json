@@ -1,0 +1,81 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1 · Installer les dépendances Python",
+      "type": "shell",
+      "command": "python3 -m venv \"${workspaceFolder}/.venv\" && \"${workspaceFolder}/.venv/bin/pip\" install -U pip && \"${workspaceFolder}/.venv/bin/pip\" install -r requirements.txt",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "2 · Lancer l'application (port 8000)",
+      "type": "shell",
+      "command": "\"${workspaceFolder}/.venv/bin/python\" -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "3 · Tests",
+      "type": "shell",
+      "command": "\"${workspaceFolder}/.venv/bin/python\" -m pytest app/tests -q",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "4 · Réamorcer le jeu de démonstration",
+      "type": "shell",
+      "command": "\"${workspaceFolder}/.venv/bin/python\" scripts/reset_demo.py",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "5 · Réinitialiser les données locales (base + images)",
+      "type": "shell",
+      "command": "rm -f diafoot.db diafoot.db-wal diafoot.db-shm && rm -rf storage/images storage/reports && echo 'Base et images réinitialisées — relancez la tâche 2.'",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Flutter — lancer la version web (Chrome)",
+      "type": "shell",
+      "command": "flutter run -d chrome --web-port 5173 --dart-define=API_BASE=http://localhost:8000",
+      "options": {
+        "cwd": "${workspaceFolder}/app_flutter"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "6 · Réamorcer sans effacer (base vide)",
+      "type": "shell",
+      "command": "\"${workspaceFolder}/.venv/bin/python\" scripts/reset_demo.py --seed-only",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+# ─── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ─── Données locales & Données de santé (Strictement confidentiel) ───────────
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+backend/*.db
+backend/*.db-journal
+backend/*.db-wal
+backend/*.db-shm
+backend/diafoot.db*
+backend/podotrace.db*
+backend/storage/
+storage/
+images/
+reports/
+
+# ─── Poids de modèles lourds (> 100 Mo rejetés par GitHub) ────────────────────
+backend/weights/*.pth
+backend/weights/*.onnx
+backend/weights/*.bin
+backend/weights/*.h5
+weights/*.pth
+
+# ─── Secrets et Environnements ────────────────────────────────────────────────
+backend/.diafoot_secret
+backend/.podotrace_secret
+*.secret
+.env
+.env.*
+backend/.env
+backend/.env.*
+!.env.example
+!backend/.env.example
+
+# ─── Flutter / Dart ──────────────────────────────────────────────────────────
+app_flutter/.dart_tool/
+app_flutter/.flutter-plugins
+app_flutter/.flutter-plugins-dependencies
+app_flutter/build/
+app_flutter/.packages
+app_flutter/pubspec.lock
+app_flutter/android/.gradle/
+app_flutter/ios/Pods/
+app_flutter/macos/Pods/
+app_flutter/web/
+
+# ─── Éditeurs & Logs ──────────────────────────────────────────────────────────
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+scratch_status.json
+test_lifecycle.py
+*.swp
+.idea/
+*.iml
+.vscode/*.log
+
+# ─── Divers ──────────────────────────────────────────────────────────────────
+node_modules/
+dist/
+out/
+coverage/

@@ -1,0 +1,70 @@
+name: diafoot_sentinel
+description: >-
+  DiaFoot Sentinel — télésurveillance du pied diabétique,
+  outil d'aide en phase de validation clinique.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # --- État & architecture ------------------------------------------------
+  provider: ^6.1.2
+
+  # --- Réseau -------------------------------------------------------------
+  dio: ^5.5.0
+  http_parser: ^4.0.2
+
+  # --- Abstraction fichiers (mobile + web, ZÉRO dart:io dans l'UI) --------
+  cross_file: ^0.3.4+1
+  image_picker: ^1.1.2
+  file_picker: ^8.0.3
+  cached_network_image: ^3.3.1
+
+  # --- Matériel -----------------------------------------------------------
+  camera: ^0.10.6            # mobile (camera_web est résolu automatiquement sur Web)
+  sensors_plus: ^5.0.1       # niveau à bulle gyroscopique
+  geolocator: ^12.0.0
+  permission_handler: ^11.3.1
+  flutter_secure_storage: ^9.2.2
+  local_auth: ^2.2.0
+
+  # --- Stockage local (cache hors-ligne) ---------------------------------
+  shared_preferences: ^2.2.3
+
+  # --- UI -----------------------------------------------------------------
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.10+1
+  fl_chart: ^0.68.0
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  url_launcher: ^6.3.0
+  shimmer: ^3.0.0
+  percent_indicator: ^4.2.3
+
+  # --- Rapports -----------------------------------------------------------
+  pdf: ^3.11.0
+  printing: ^5.13.1
+  share_plus: ^9.0.0
+
+  # --- Utilitaires --------------------------------------------------------
+  intl: ^0.20.3
+  uuid: ^4.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/overlays/

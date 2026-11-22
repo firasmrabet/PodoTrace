@@ -1,0 +1,29 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/backend"
+  ],
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "app/tests"
+  ],
+  "python.testing.cwd": "${workspaceFolder}/backend",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.dart_tool": true
+  },
+  "[python]": {
+    "editor.formatOnSave": false
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": null
+  },
+  "editor.rulers": [
+    100
+  ],
+  "files.associations": {
+    "*.html": "html"
+  },
+  "python.terminal.useEnvFile": true
+}
