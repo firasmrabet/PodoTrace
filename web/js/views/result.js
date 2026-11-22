@@ -242,7 +242,7 @@ export async function exportPdf(woundId, btn) {
     if (blob.size < 1000) throw new Error('Le rapport généré est vide.');
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
-    download(blob, `diafoot-rapport-plaie-${woundId}.pdf`);
+    download(blob, `podotrace-rapport-plaie-${woundId}.pdf`);
     toast('Rapport PDF généré.', 'ok');
   } catch (err) {
     toast(err.message || 'Export impossible.', 'err');

@@ -20,7 +20,7 @@ backend/*.db
 backend/*.db-journal
 backend/*.db-wal
 backend/*.db-shm
-backend/diafoot.db*
+backend/podotrace.db*
 backend/podotrace.db*
 backend/storage/
 storage/
@@ -35,9 +35,11 @@ backend/weights/*.h5
 weights/*.pth
 
 # ─── Secrets et Environnements ────────────────────────────────────────────────
+backend/.*secret*
+.*secret*
+*.secret
 backend/.diafoot_secret
 backend/.podotrace_secret
-*.secret
 .env
 .env.*
 backend/.env

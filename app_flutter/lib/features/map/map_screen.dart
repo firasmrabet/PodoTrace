@@ -176,7 +176,7 @@ class _MapScreenState extends State<MapScreen> {
                   TileLayer(
                     urlTemplate:
                         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'health.diafoot.sentinel',
+                    userAgentPackageName: 'health.podotrace.sentinel',
                     tileProvider: NetworkTileProvider(),
                   ),
                   MarkerLayer(

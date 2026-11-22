@@ -76,7 +76,7 @@ class _AuthFlowState extends State<AuthFlow> {
           ),
         ),
         const SizedBox(height: 26),
-        Text('DIAFOOT SENTINEL', style: DfType.overline),
+        Text('PODOTRACE', style: DfType.overline),
         const SizedBox(height: 10),
         Text(
           _registerMode

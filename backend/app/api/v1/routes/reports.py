@@ -109,7 +109,7 @@ async def wound_report(
 
         images["segmentation"] = _b64_png(overlay, max_side=700)
     except Exception as exc:  # noqa: BLE001
-        print(f"[DiaFoot][PDF] Images indisponibles : {exc}")
+        print(f"[PodoTrace][PDF] Images indisponibles : {exc}")
 
     pdf = build_report(
         patient={
@@ -144,8 +144,8 @@ async def wound_report(
         .replace(" ", "_")
         or "plaie"
     )
-    ascii_name = f"DiaFoot_Sentinel_{ascii_label}_{datetime.now():%Y%m%d}.pdf"
-    utf8_name = quote(f"DiaFoot_Sentinel_{wound.label.replace(' ', '_')}_{datetime.now():%Y%m%d}.pdf")
+    ascii_name = f"PodoTrace_Sentinel_{ascii_label}_{datetime.now():%Y%m%d}.pdf"
+    utf8_name = quote(f"PodoTrace_Sentinel_{wound.label.replace(' ', '_')}_{datetime.now():%Y%m%d}.pdf")
     return Response(
         content=pdf,
         media_type="application/pdf",

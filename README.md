@@ -65,9 +65,9 @@ L'application est pré-configurée avec des profils types :
 
 | Rôle | Email | Mot de passe |
 | :--- | :--- | :--- |
-| **Patient** | `amine@diafoot.tn` | `diafoot2026` |
-| **Praticien** | `dr.mansouri@diafoot.tn` | `diafoot2026` |
-| **Proche / Aidant** | `monia@diafoot.tn` | `diafoot2026` |
+| **Patient** | `amine@podotrace.tn` | `podotrace2026` |
+| **Praticien** | `dr.mansouri@podotrace.tn` | `podotrace2026` |
+| **Proche / Aidant** | `monia@podotrace.tn` | `podotrace2026` |
 
 ---
 
@@ -83,7 +83,7 @@ Spécification complète (tokens, composants, mouvements, interdits) :
 ## Structure du dépôt
 
 ```
-diafoot-sentinel/
+podotrace/
 ├── backend/          FastAPI + moteur d'inférence + services (Python 3.10+)
 │   ├── app/          api · core · db · inference · models · schemas · services · tests
 │   ├── scripts/      reset_demo.py (réamorçage du jeu de démonstration)
@@ -111,14 +111,14 @@ cp .env.example backend/.env
 | Variable | Défaut | Rôle |
 |---|---|---|
 | `PORT` | `8000` | port HTTP (API + interface) |
-| `DATABASE_URL` | SQLite `backend/diafoot.db` | PostgreSQL en production |
-| `SECRET_KEY` | généré → `backend/.diafoot_secret` | signature JWT + clé de chiffrement |
+| `DATABASE_URL` | SQLite `backend/podotrace.db` | PostgreSQL en production |
+| `SECRET_KEY` | généré → `backend/.podotrace_secret` | signature JWT + clé de chiffrement |
 | `EXPOSE_OTP_IN_RESPONSE` | `true` | affiche l'OTP à l'écran (dev) |
 | `AUTO_SEED_DEMO` | `true` | jeu de démonstration au 1er démarrage |
 | `GROQ_API_KEY` / `MISTRAL_API_KEY` / `OPENROUTER_API_KEY` | — | assistant LLM distant |
 | `ALLOW_SIMULATION_FALLBACK` | `true` | moteur colorimétrique si poids absents |
 
-> 🔐 `backend/.diafoot_secret` chiffre les photos stockées. Le supprimer rend les
+> 🔐 `backend/.podotrace_secret` chiffre les photos stockées. Le supprimer rend les
 > images existantes illisibles **et** invalide les jetons : à réserver à une
 > rotation de clé volontaire (puis `python scripts/reset_demo.py`).
 
@@ -168,7 +168,7 @@ sauvegardes chiffrées, et revue clinique du moteur sur une cohorte locale.
 
 | Symptôme | Cause / solution |
 |---|---|
-| `Contenu chiffré illisible` | `backend/.diafoot_secret` a été supprimé/remplacé → `rm backend/diafoot.db && rm -rf backend/storage` puis relancer |
+| `Contenu chiffré illisible` | `backend/.podotrace_secret` a été supprimé/remplacé → `rm backend/podotrace.db && rm -rf backend/storage` puis relancer |
 | La caméra ne s'ouvre pas | la capture exige HTTPS ou `localhost` ; sans caméra, le bouton « importer » et « générer une image de test » fonctionnent |
 | Centres de soin en « source locale » | Overpass/OSM injoignable (fréquent hors-ligne) → jeu local Grand Tunis affiché, choix assumé |
 | `database is locked` | SQLite est en WAL avec un `busy_timeout` de 30 s, et le jeu de démonstration est

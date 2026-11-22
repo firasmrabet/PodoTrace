@@ -1,4 +1,4 @@
-/// Modèles de données de DiaFoot Sentinel (miroir des schémas Pydantic).
+/// Modèles de données de PodoTrace (miroir des schémas Pydantic).
 library;
 
 import 'dart:typed_data';

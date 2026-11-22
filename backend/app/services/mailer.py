@@ -15,20 +15,20 @@ from app.core.config import settings
 
 def _build_otp_email(to: str, code: str, full_name: str = "") -> EmailMessage:
     msg = EmailMessage()
-    msg["Subject"] = f"DiaFoot Sentinel — votre code de vérification : {code}"
+    msg["Subject"] = f"PodoTrace — votre code de vérification : {code}"
     msg["From"] = settings.SMTP_FROM
     msg["To"] = to
     msg.set_content(
         f"""Bonjour {full_name or ''},
 
-Votre code de vérification DiaFoot Sentinel est :
+Votre code de vérification PodoTrace est :
 
     {code}
 
 Il expire dans {settings.OTP_TTL_MINUTES} minutes.
 Si vous n'êtes pas à l'origine de cette demande, ignorez cet email.
 
-— DiaFoot Sentinel
+— PodoTrace
 Surveillance clinique des plaies du pied diabétique.
 Ce service est un outil d'aide à la décision et ne remplace pas un avis médical.
 """
@@ -38,7 +38,7 @@ Ce service est un outil d'aide à la décision et ne remplace pas un avis médic
         <div style="max-width:520px;margin:auto;background:#1E121C;border:1px solid #C9924E55;
                     border-radius:16px;padding:32px;color:#F3E9E2">
           <p style="letter-spacing:.28em;font-size:11px;color:#C9924E;margin:0 0 18px">
-            DIAFOOT SENTINEL</p>
+            PODOTRACE</p>
           <h1 style="font-size:24px;margin:0 0 12px">Votre code de vérification</h1>
           <p style="color:#C9B8AE;line-height:1.6">Saisissez ce code pour activer votre compte.</p>
           <div style="font-size:38px;letter-spacing:.22em;color:#E8B87F;font-weight:600;
@@ -53,7 +53,7 @@ Ce service est un outil d'aide à la décision et ne remplace pas un avis médic
 async def send_otp_email(to: str, code: str, full_name: str = "") -> bool:
     """Retourne True si l'email a été remis au serveur SMTP."""
     if not settings.SMTP_HOST:
-        print(f"[DiaFoot][MAIL-DEV] OTP pour {to} : {code}")
+        print(f"[PodoTrace][MAIL-DEV] OTP pour {to} : {code}")
         return False
 
     msg = _build_otp_email(to, code, full_name)
@@ -75,14 +75,14 @@ async def send_otp_email(to: str, code: str, full_name: str = "") -> bool:
         await asyncio.to_thread(_send)
         return True
     except Exception as exc:  # noqa: BLE001
-        print(f"[DiaFoot][MAIL] Échec d'envoi à {to} : {exc}")
+        print(f"[PodoTrace][MAIL] Échec d'envoi à {to} : {exc}")
         return False
 
 
 async def send_share_email(to: str, subject: str, body: str, attachment: Optional[bytes] = None,
                            filename: str = "rapport.pdf") -> bool:
     if not settings.SMTP_HOST:
-        print(f"[DiaFoot][MAIL-DEV] Partage '{subject}' → {to} ({len(attachment or b'')} octets)")
+        print(f"[PodoTrace][MAIL-DEV] Partage '{subject}' → {to} ({len(attachment or b'')} octets)")
         return False
     msg = EmailMessage()
     msg["Subject"] = subject
@@ -103,5 +103,5 @@ async def send_share_email(to: str, subject: str, body: str, attachment: Optiona
         await asyncio.to_thread(_send)
         return True
     except Exception as exc:  # noqa: BLE001
-        print(f"[DiaFoot][MAIL] Échec partage : {exc}")
+        print(f"[PodoTrace][MAIL] Échec partage : {exc}")
         return False

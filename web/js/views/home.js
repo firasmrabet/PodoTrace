@@ -127,7 +127,7 @@ export default async function home(root) {
     </div>
 
     <p class="tiny center mt-lg" style="line-height:1.6">
-      DiaFoot Sentinel est un outil d'aide à la télésurveillance en phase de validation clinique. Il ne pose pas de diagnostic
+      PodoTrace est un outil d'aide à la télésurveillance en phase de validation clinique. Il ne pose pas de diagnostic
       et ne remplace pas une consultation. En cas de fièvre, douleur brutale ou rougeur qui s'étend :
       <b>15</b> (SAMU) ou <b>190</b>.
     </p>

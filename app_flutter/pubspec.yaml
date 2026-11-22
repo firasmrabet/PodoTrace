@@ -1,6 +1,6 @@
-name: diafoot_sentinel
+name: podotrace
 description: >-
-  DiaFoot Sentinel — télésurveillance du pied diabétique,
+  PodoTrace — télésurveillance du pied diabétique,
   outil d'aide en phase de validation clinique.
 publish_to: "none"
 version: 1.0.0+1

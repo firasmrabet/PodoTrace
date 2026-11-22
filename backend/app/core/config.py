@@ -1,4 +1,4 @@
-"""Configuration centrale de DiaFoot Sentinel.
+"""Configuration centrale de PodoTrace.
 
 Toutes les valeurs sensibles proviennent de l'environnement (12-factor).
 Le module expose un `settings` unique et immuable consommé par l'application.
@@ -29,7 +29,7 @@ def _int(key: str, default: int) -> int:
         return default
 
 
-def _persisted_secret(filename: str = ".diafoot_secret") -> str:
+def _persisted_secret(filename: str = ".podotrace_secret") -> str:
     """Clé de signature persistée localement.
 
     En développement (aucune variable d'environnement fournie), la clé est
@@ -87,7 +87,7 @@ class Settings:
     # --- Base de données ----------------------------------------------------
     DATABASE_URL: str = (
         os.getenv("DATABASE_URL", "").strip()
-        or f"sqlite+aiosqlite:///{BASE_DIR / 'diafoot.db'}"
+        or f"sqlite+aiosqlite:///{BASE_DIR / 'podotrace.db'}"
     )
 
     # --- Stockage -----------------------------------------------------------
@@ -111,7 +111,7 @@ class Settings:
     SMTP_PORT: int = _int("SMTP_PORT", 587)
     SMTP_USER: str = os.getenv("SMTP_USER", "")
     SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
-    SMTP_FROM: str = os.getenv("SMTP_FROM", "no-reply@diafoot-sentinel.health")
+    SMTP_FROM: str = os.getenv("SMTP_FROM", "no-reply@podotrace.health")
     # En dev : l'OTP est renvoyé dans la réponse API pour permettre les tests E2E.
     EXPOSE_OTP_IN_RESPONSE: bool = _bool("EXPOSE_OTP_IN_RESPONSE", True)
 

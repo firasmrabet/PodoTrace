@@ -4,9 +4,9 @@
 import { S, api, setToken, icon, h, toast, el, els } from '../core.js';
 
 const DEMO = {
-  patient: { email: 'amine@diafoot.tn', password: 'diafoot2026' },
-  pro: { email: 'dr.mansouri@diafoot.tn', password: 'diafoot2026' },
-  aidant: { email: 'monia@diafoot.tn', password: 'diafoot2026' },
+  patient: { email: 'amine@podotrace.tn', password: 'podotrace2026' },
+  pro: { email: 'dr.mansouri@podotrace.tn', password: 'podotrace2026' },
+  aidant: { email: 'monia@podotrace.tn', password: 'podotrace2026' },
 };
 
 let mode = 'login';
@@ -22,7 +22,7 @@ export function renderAuth(root) {
         <div class="row" style="gap:11px">
           <div class="mark" style="width:42px; height:42px; border-radius:13px">${icon('foot', 23)}</div>
           <div>
-            <div style="font-family:var(--serif); font-size:16px; font-weight:600">DiaFoot Sentinel</div>
+            <div style="font-family:var(--serif); font-size:16px; font-weight:600">PodoTrace</div>
             <div class="tiny" style="letter-spacing:.16em; text-transform:uppercase; margin-top:2px">Télésurveillance</div>
           </div>
         </div>
@@ -167,7 +167,7 @@ function paint() {
           <span class="box">${icon('check', 11)}</span>
           <span class="small" style="color:var(--ink-2); line-height:1.55">
             J'accepte le traitement chiffré de mes données de santé (RGPD / HDS) et je comprends
-            que DiaFoot Sentinel est une <b>aide à la décision</b>, non un diagnostic.
+            que PodoTrace est une <b>aide à la décision</b>, non un diagnostic.
           </span>
         </label>` : `
         <div class="row between mt-sm">

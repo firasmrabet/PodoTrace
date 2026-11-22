@@ -35,7 +35,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     _messages.add(ChatEntry(
-      text: 'Bonjour. Je suis l\'assistant DiaFoot Sentinel, adossé aux '
+      text: 'Bonjour. Je suis l\'assistant PodoTrace, adossé aux '
           'recommandations internationales IWGDF. Vous pouvez me décrire '
           'l\'aspect de votre plaie ou poser une question sur votre suivi.\n\n'
           'Je ne pose pas de diagnostic et ne remplace pas votre médecin.',
@@ -189,7 +189,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       icon: const Icon(Icons.arrow_back_rounded,
                           color: DfColors.creamDim),
                     ),
-                    Text('Assistant DiaFoot',
+                    Text('Assistant PodoTrace',
                         style: DfType.h3.copyWith(fontSize: 16)),
                   ],
                 ),

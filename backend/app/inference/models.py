@@ -1,4 +1,4 @@
-"""Architectures d'inférence médicale DiaFoot Sentinel.
+"""Architectures d'inférence médicale PodoTrace.
 
 Contient les définitions PyTorch réelles (chargées uniquement si `torch` est
 disponible). Le backend reste pleinement opérationnel sans GPU ni poids `.pth`
@@ -304,7 +304,7 @@ else:  # pragma: no cover - environnement sans PyTorch
         def __init__(self, *args: Any, **kwargs: Any) -> None:
             raise RuntimeError(
                 "PyTorch n'est pas installé : `pip install torch timm`. "
-                "DiaFoot Sentinel bascule sur le moteur de simulation calibré."
+                "PodoTrace bascule sur le moteur de simulation calibré."
             )
 
     WoundSegmentationModel = _TorchUnavailable  # type: ignore[misc,assignment]

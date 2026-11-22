@@ -154,11 +154,11 @@ def test_image_access_denied_for_other_patient(client: TestClient, registered_us
     analysis_id = r.json()["analysis"]["id"]
 
     other = client.post("/api/v1/auth/register", json={
-        "email": "intrus@diafoot.health",
+        "email": "intrus@podotrace.health",
         "password": "Sentinel#2026!x",
         "consent_accepted": True,
     })
-    email = "intrus@diafoot.health"
+    email = "intrus@podotrace.health"
     token_r = client.post("/api/v1/auth/verify-otp",
                           json={"email": email, "code": other.json()["dev_otp"]})
     headers = {"Authorization": f"Bearer {token_r.json()['access_token']}"}
@@ -309,7 +309,7 @@ async def test_geo_reports_local_fallback_source(monkeypatch):
 def test_unassigned_practitioner_cannot_browse_patient_data(
     client: TestClient, registered_user: dict, wound: dict
 ):
-    email = "unassigned.practitioner@diafoot.health"
+    email = "unassigned.practitioner@podotrace.health"
     registered = client.post("/api/v1/auth/register", json={
         "email": email,
         "password": "Podologue#2026!",

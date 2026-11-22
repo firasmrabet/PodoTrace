@@ -54,7 +54,7 @@ EMERGENCY_MESSAGE_FR = (
     "⚠️ URGENCE MÉDICALE POTENTIELLE — Appelez immédiatement le 15 (SAMU) ou le 190 "
     "(SAMU Tunisie) / rendez-vous aux urgences les plus proches. N'attendez pas. "
     "Ne débridez pas vous-même, ne posez aucun produit et surélevez le membre sans "
-    "comprimer la plaie. DiaFoot Sentinel ne peut pas poser de diagnostic d'urgence."
+    "comprimer la plaie. PodoTrace ne peut pas poser de diagnostic d'urgence."
 )
 EMERGENCY_MESSAGE_EN = (
     "⚠️ POTENTIAL MEDICAL EMERGENCY — Call your local emergency number (SAMU 15 / 190) "
@@ -65,7 +65,7 @@ EMERGENCY_MESSAGE_AR = (
     "⚠️ حالة طوارئ طبية محتملة — اتصل فوراً بالإسعاف (190 للحماية المدنية / SAMU بتونس أو 15) "
     "أو توجه إلى أقرب قسم استعجالي في المستشفى فوراً ولا تنتظر. "
     "لا تقم بتنظيف أو كشط الجرح بنفسك، ولا تضع أي مواد أو مراهم غير موصوفة، وارفع ساقك "
-    "بلطف دون الضغط على موضع الجرح. DiaFoot Sentinel هو نظام مساعدة للقرار ولا يحل محل الطبيب."
+    "بلطف دون الضغط على موضع الجرح. PodoTrace هو نظام مساعدة للقرار ولا يحل محل الطبيب."
 )
 
 # ---------------------------------------------------------------------------
@@ -157,7 +157,7 @@ KB: list[dict[str, Any]] = [
     },
 ]
 
-SYSTEM_PROMPT_FR = """Tu es DiaFoot Sentinel, assistant médical spécialisé dans le pied diabétique.
+SYSTEM_PROMPT_FR = """Tu es PodoTrace, assistant médical spécialisé dans le pied diabétique.
 Règles absolues :
 1. Tu t'appuies exclusivement sur les guidelines IWGDF, les classifications Wagner/Texas
    et les principes TIME. Cite la source utilisée.
@@ -169,14 +169,14 @@ Règles absolues :
 5. Tu termines par une phrase rappelant que ceci est une aide à la décision et non un avis médical.
 """
 
-SYSTEM_PROMPT_EN = """You are DiaFoot Sentinel, a medical assistant specialised in the diabetic foot.
+SYSTEM_PROMPT_EN = """You are PodoTrace, a medical assistant specialised in the diabetic foot.
 Absolute rules: rely on IWGDF guidelines, Wagner/Texas classifications and TIME principles;
 never make a definitive diagnosis or prescribe drugs/doses; answer in English, empathically and
 concisely (max 220 words); start with an emergency box for red flags; end with a disclaimer that
 this is decision support, not medical advice.
 """
 
-SYSTEM_PROMPT_AR = """أنت DiaFoot Sentinel، مساعد طبي ذكي متخصص في متابعة قرحة وقدم مريض السكري وفق المعايير الدولية IWGDF 2023 وتصنيفات Wagner و Texas ومبادئ TIME.
+SYSTEM_PROMPT_AR = """أنت PodoTrace، مساعد طبي ذكي متخصص في متابعة قرحة وقدم مريض السكري وفق المعايير الدولية IWGDF 2023 وتصنيفات Wagner و Texas ومبادئ TIME.
 القواعد الطبية الصارمة:
 1. اعتمد حصرياً على الأدلة الإكلينيكية المعترف بها عالمياً، واذكر المصدر الطبي المستخدم.
 2. لا تقدم تشخيصاً قاطعاً مطلقاً ولا تصف أي أدوية أو جرعات علاجية.
@@ -334,7 +334,7 @@ async def _call_provider(provider: dict[str, Any], messages: list[dict[str, str]
             data = r.json()
             return data["choices"][0]["message"]["content"].strip()
     except Exception as exc:  # noqa: BLE001
-        print(f"[DiaFoot][LLM] {provider['name']} indisponible : {exc}")
+        print(f"[PodoTrace][LLM] {provider['name']} indisponible : {exc}")
         return None
 
 

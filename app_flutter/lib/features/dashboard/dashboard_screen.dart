@@ -212,7 +212,7 @@ class _QuickActionsGrid extends StatelessWidget {
       ),
       DfQuickAction(
         icon: Icons.auto_awesome_outlined,
-        label: 'Assistant DiaFoot',
+        label: 'Assistant PodoTrace',
         caption: 'Conseils IWGDF',
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (_) => const ChatScreen(embedded: false)),

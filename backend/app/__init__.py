@@ -1,2 +1,2 @@
-"""DiaFoot Sentinel — backend FastAPI."""
+"""PodoTrace — backend FastAPI."""
 __version__ = "1.0.0"

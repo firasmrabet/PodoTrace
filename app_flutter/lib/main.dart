@@ -13,11 +13,11 @@ import 'state/app_state.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const DiaFootApp());
+  runApp(const PodoTraceApp());
 }
 
-class DiaFootApp extends StatelessWidget {
-  const DiaFootApp({super.key});
+class PodoTraceApp extends StatelessWidget {
+  const PodoTraceApp({super.key});
 
   @override
   Widget build(BuildContext context) {

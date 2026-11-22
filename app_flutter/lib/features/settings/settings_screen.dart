@@ -290,7 +290,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (value) {
         final ok = await localAuth.authenticate(
           localizedReason:
-              'Activez la biométrie pour déverrouiller DiaFoot Sentinel',
+              'Activez la biométrie pour déverrouiller PodoTrace',
         );
         if (!ok) return;
       }

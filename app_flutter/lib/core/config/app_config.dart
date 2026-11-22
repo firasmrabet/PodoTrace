@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-/// Configuration réseau et comportementale de DiaFoot Sentinel.
+/// Configuration réseau et comportementale de PodoTrace.
 ///
 /// Détection dynamique de l'hôte API :
 ///   · Web / desktop      → `http://127.0.0.1:8000` (ou `--dart-define=API_BASE_URL=...`)
@@ -10,7 +10,7 @@ import 'package:flutter/foundation.dart';
 class AppConfig {
   AppConfig._();
 
-  static const String appName = 'DiaFoot Sentinel';
+  static const String appName = 'PodoTrace';
   static const String version = '1.0.0';
   static const String apiPrefix = '/api/v1';
 

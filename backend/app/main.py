@@ -1,4 +1,4 @@
-"""DiaFoot Sentinel — point d'entrée FastAPI.
+"""PodoTrace — point d'entrée FastAPI.
 
 Configuration CORS dynamique (Flutter Web en développement sur n'importe quel
 port) et en-têtes de sécurité compatibles avec la caméra et la géolocalisation
@@ -29,7 +29,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     from app.inference.pipeline import get_analyzer
 
     status = get_analyzer().status()
-    print(f"[DiaFoot] Moteur d'inférence : {status['engine']} "
+    print(f"[PodoTrace] Moteur d'inférence : {status['engine']} "
           f"(torch={status['torch']}, opencv={status['opencv']})")
 
     # Jeu de démonstration : exécuté en tâche de fond pour ne jamais retarder
@@ -42,10 +42,10 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
                 created = await seed_demo_if_empty()
                 if created:
-                    print("[DiaFoot] Comptes de démonstration : "
-                          "amine@diafoot.tn / dr.mansouri@diafoot.tn (mot de passe diafoot2026)")
+                    print("[PodoTrace] Comptes de démonstration : "
+                          "amine@podotrace.tn / dr.mansouri@podotrace.tn (mot de passe podotrace2026)")
             except Exception as exc:  # noqa: BLE001 — le service doit démarrer quoi qu'il arrive
-                print(f"[DiaFoot] Amorçage ignoré : {exc}")
+                print(f"[PodoTrace] Amorçage ignoré : {exc}")
 
         seed_task = asyncio.create_task(_seed())
 
@@ -56,7 +56,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(
-    title="DiaFoot Sentinel API",
+    title="PodoTrace API",
     description=(
         "API de télésurveillance et d'évaluation des ulcères du pied diabétique. "
         "Segmentation multi-tissus, risques infectieux/ischémiques, Grad-CAM, "
@@ -205,4 +205,4 @@ if settings.SERVE_WEB and (settings.WEB_DIR / "index.html").exists():
         StaticFiles(directory=str(settings.WEB_DIR), html=True),
         name="web",
     )
-    print(f"[DiaFoot] Interface web servie depuis {settings.WEB_DIR}")
+    print(f"[PodoTrace] Interface web servie depuis {settings.WEB_DIR}")

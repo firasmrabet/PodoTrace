@@ -207,7 +207,7 @@ async def google_login(payload: GoogleLoginRequest, db: DbSession, request: Requ
             if r.status_code == 200:
                 claims = r.json()
     except Exception as exc:  # noqa: BLE001
-        print(f"[DiaFoot][Google] Vérification impossible : {exc}")
+        print(f"[PodoTrace][Google] Vérification impossible : {exc}")
 
     email = (claims.get("email") or "").lower()
     if not email:

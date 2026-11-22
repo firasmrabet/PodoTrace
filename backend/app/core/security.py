@@ -67,7 +67,7 @@ def create_access_token(subject: str, extra: Optional[dict[str, Any]] = None) ->
         "sub": subject,
         "iat": int(now.timestamp()),
         "exp": int((now + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)).timestamp()),
-        "iss": "diafoot-sentinel",
+        "iss": "podotrace",
         **(extra or {}),
     }
     return jwt.encode(payload, settings.SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
@@ -106,7 +106,7 @@ def _fernet() -> Fernet:
     if not key:
         # Clé dérivée déterministe pour le dev (jamais en production).
         key = base64.urlsafe_b64encode(
-            hashlib.sha256(f"diafoot:{settings.SECRET_KEY}".encode()).digest()
+            hashlib.sha256(f"podotrace:{settings.SECRET_KEY}".encode()).digest()
         ).decode()
     return Fernet(key.encode())
 

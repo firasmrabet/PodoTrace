@@ -1,13 +1,13 @@
-"""Réamorçage du jeu de démonstration DiaFoot Sentinel.
+"""Réamorçage du jeu de démonstration PodoTrace.
 
 Usage (depuis `backend/`) :
 
     python scripts/reset_demo.py            # vide la base + le stockage, puis réamorce
     python scripts/reset_demo.py --seed-only  # complète les données démo sans effacer
 
-Le script travaille sur la **vraie** base de l'application (`diafoot.db`) et le
+Le script travaille sur la **vraie** base de l'application (`podotrace.db`) et le
 vrai stockage chiffré : après exécution, connectez-vous simplement avec
-`amine@diafoot.tn` ou `dr.mansouri@diafoot.tn` (mot de passe `diafoot2026`).
+`amine@podotrace.tn` ou `dr.mansouri@podotrace.tn` (mot de passe `podotrace2026`).
 """
 from __future__ import annotations
 
@@ -53,9 +53,9 @@ async def _seed() -> None:
     created = await seed_demo_if_empty()
     if created:
         print("\nJeu de démonstration créé :")
-        print("  patient     amine@diafoot.tn      · diafoot2026")
-        print("  praticien   dr.mansouri@diafoot.tn · diafoot2026")
-        print("  proche      monia@diafoot.tn       · diafoot2026")
+        print("  patient     amine@podotrace.tn      · podotrace2026")
+        print("  praticien   dr.mansouri@podotrace.tn · podotrace2026")
+        print("  proche      monia@podotrace.tn       · podotrace2026")
     else:
         print("Jeu de démonstration déjà complet — rien à ajouter.")
 

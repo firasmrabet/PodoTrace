@@ -121,7 +121,7 @@ export default async function settings(root) {
         <div class="card sink flat">
           <div class="eyebrow" style="font-size:9px">Version</div>
           <p class="tiny mt-sm" style="line-height:1.6">
-            DiaFoot Sentinel v1.0.0 · interface web.<br>
+            PodoTrace v1.0.0 · interface web.<br>
             Backend FastAPI · segmentation multi-tissus · RAG IWGDF.<br>
             Urgences : <b>15</b> (SAMU) · <b>190</b> (Tunisie).
           </p>

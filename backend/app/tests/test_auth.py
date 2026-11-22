@@ -20,7 +20,7 @@ def test_root_disclaimer(client: TestClient):
 
 def test_register_requires_consent(client: TestClient):
     r = client.post("/api/v1/auth/register", json={
-        "email": "noconsent@diafoot.health",
+        "email": "noconsent@podotrace.health",
         "password": "Sentinel#2026!x",
         "consent_accepted": False,
     })
@@ -29,7 +29,7 @@ def test_register_requires_consent(client: TestClient):
 
 def test_register_weak_password(client: TestClient):
     r = client.post("/api/v1/auth/register", json={
-        "email": "weak@diafoot.health",
+        "email": "weak@podotrace.health",
         "password": "azerty",
         "consent_accepted": True,
     })
@@ -37,7 +37,7 @@ def test_register_weak_password(client: TestClient):
 
 
 def test_full_auth_flow(client: TestClient):
-    email = "flow.user@diafoot.health"
+    email = "flow.user@podotrace.health"
     r = client.post("/api/v1/auth/register", json={
         "email": email,
         "password": "Sentinel#2026!x",

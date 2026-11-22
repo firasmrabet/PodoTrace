@@ -289,7 +289,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       return;
     }
     await Printing.sharePdf(
-        bytes: bytes, filename: 'DiaFoot_Sentinel_rapport.pdf');
+        bytes: bytes, filename: 'PodoTrace_Sentinel_rapport.pdf');
   }
 
   static String _shortDate(String iso) {

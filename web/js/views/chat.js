@@ -61,7 +61,7 @@ export default async function chat(root, params) {
   const scroll = el('#scroll', root);
 
   if (!history.length) {
-    pushBubble('ia', `Bonjour. Je suis l'assistant DiaFoot Sentinel, adossé aux recommandations IWGDF.
+    pushBubble('ia', `Bonjour. Je suis l'assistant PodoTrace, adossé aux recommandations IWGDF.
 Je peux expliquer un résultat, décrire les soins de décharge ou repérer un signe d'alerte.
 Je ne pose pas de diagnostic et ne prescris pas de médicament.`);
   } else {

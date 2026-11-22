@@ -1,4 +1,4 @@
-"""Pipeline d'inférence DiaFoot Sentinel (`WoundAnalyzer`).
+"""Pipeline d'inférence PodoTrace (`WoundAnalyzer`).
 
 Chaîne complète, exécutée hors event-loop (thread pool) :
 
@@ -314,7 +314,7 @@ class WoundAnalyzer:
             },
             "recommendations": risk.recommendations,
             "disclaimer": (
-                "DiaFoot Sentinel est un outil d'aide à la télésurveillance en phase de validation clinique. "
+                "PodoTrace est un outil d'aide à la télésurveillance en phase de validation clinique. "
                 "Il ne remplace pas l'évaluation d'un professionnel de santé et ne "
                 "pose pas de diagnostic. En cas de doute, consultez sans délai."
             ),
@@ -369,7 +369,7 @@ class WoundAnalyzer:
                             "L'image semble être un visage, un objet ou une peau saine sans plaie.",
                         ],
                         guidance=(
-                            "DiaFoot Sentinel est spécifiquement conçu pour l'évaluation et le suivi des plaies du "
+                            "PodoTrace est spécifiquement conçu pour l'évaluation et le suivi des plaies du "
                             "pied diabétique. Cadrez directement la lésion sur le pied, bien centrée et sous un éclairage naturel."
                         ),
                         error_code="no_wound_detected",
@@ -406,7 +406,7 @@ class WoundAnalyzer:
             except ImageQualityError:
                 raise
             except Exception as exc:  # noqa: BLE001
-                print(f"[DiaFoot] Inférence U-Net++ adaptée ({exc}) → segmentation morphologique clinique")
+                print(f"[PodoTrace] Inférence U-Net++ adaptée ({exc}) → segmentation morphologique clinique")
 
         # Repli uniquement si le modèle neural est indisponible ou a échoué techniquement
         base_seg = engine.segment_tissues(bgr)
@@ -464,7 +464,7 @@ class WoundAnalyzer:
                     requires_review=final_unc > settings.UNCERTAINTY_THRESHOLD,
                 )
             except Exception as exc:  # noqa: BLE001
-                print(f"[DiaFoot] Classifieur profond indisponible ({exc}) → score calibré")
+                print(f"[PodoTrace] Classifieur profond indisponible ({exc}) → score calibré")
         return base
 
     def _explain(
@@ -484,7 +484,7 @@ class WoundAnalyzer:
                 cam = gen.generate(self._to_tensor(bgr), head=target)
                 method = "grad-cam"
             except Exception as exc:  # noqa: BLE001
-                print(f"[DiaFoot] Grad-CAM indisponible ({exc}) → proxy de saillance")
+                print(f"[PodoTrace] Grad-CAM indisponible ({exc}) → proxy de saillance")
         if cam is None:
             cam = saliency_proxy(bgr, seg.mask, target=target)
         elif CV2 and cam.shape[:2] != bgr.shape[:2]:

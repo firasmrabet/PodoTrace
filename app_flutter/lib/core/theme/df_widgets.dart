@@ -880,7 +880,7 @@ class DfdDisclaimer extends StatelessWidget {
           child: Text(
             compact
                 ? 'Outil d\'aide en phase de validation — ne remplace pas un avis médical.'
-                : 'DiaFoot Sentinel est un outil d\'aide à la télésurveillance en phase de validation clinique. '
+                : 'PodoTrace est un outil d\'aide à la télésurveillance en phase de validation clinique. '
                     'Les résultats ne constituent ni un diagnostic ni une prescription. '
                     'En cas de fièvre, de douleur brutale ou d\'extension rapide de la rougeur, '
                     'contactez immédiatement les urgences (15 / 190).',

@@ -135,7 +135,7 @@ def _header_footer(canvas, doc, meta: dict[str, Any]) -> None:
     # Titres
     canvas.setFillColor(CREAM)
     canvas.setFont("Times-Bold", 15)
-    canvas.drawString(30 * mm, h - 11.6 * mm, "DiaFoot Sentinel")
+    canvas.drawString(30 * mm, h - 11.6 * mm, "PodoTrace")
     canvas.setFont("Helvetica", 6.8)
     canvas.setFillColor(COPPER_LIGHT)
     canvas.drawString(30 * mm, h - 15.4 * mm,
@@ -157,7 +157,7 @@ def _header_footer(canvas, doc, meta: dict[str, Any]) -> None:
                       "Document d'aide en phase de validation clinique — ne constitue pas un diagnostic. "
                       "Données de santé chiffrées au repos.")
     canvas.drawString(14 * mm, 8 * mm,
-                      "DiaFoot Sentinel v1.0 · Conforme RGPD / référentiel HDS · IWGDF 2023")
+                      "PodoTrace v1.0 · Conforme RGPD / référentiel HDS · IWGDF 2023")
     canvas.setFont("Helvetica-Bold", 7)
     canvas.setFillColor(PLUM)
     canvas.drawRightString(w - 14 * mm, 9.5 * mm, f"Page {doc.page}")
@@ -182,8 +182,8 @@ def build_report(
         buf, pagesize=A4,
         leftMargin=14 * mm, rightMargin=14 * mm,
         topMargin=32 * mm, bottomMargin=20 * mm,
-        title=f"Rapport DiaFoot Sentinel — {wound.get('label', 'Plaie')}",
-        author="DiaFoot Sentinel",
+        title=f"Rapport PodoTrace — {wound.get('label', 'Plaie')}",
+        author="PodoTrace",
     )
     story: list[Any] = []
     latest = analyses[-1] if analyses else {}
@@ -364,7 +364,7 @@ def build_report(
     story.append(sig)
     story.append(Spacer(1, 8))
     story.append(Paragraph(
-        "Avertissement réglementaire — DiaFoot Sentinel est un logiciel d'aide à la décision "
+        "Avertissement réglementaire — PodoTrace est un logiciel d'aide à la décision "
         "médicale en phase de validation clinique. Les scores produits par l'IA ne constituent ni un "
         "diagnostic ni une prescription. Toute décision thérapeutique relève du jugement "
         "clinique du professionnel de santé. En cas de signes généraux (fièvre, altération "

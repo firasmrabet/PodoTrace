@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "DiaFoot Sentinel — API + Web",
+      "name": "PodoTrace — API + Web",
       "type": "debugpy",
       "request": "launch",
       "module": "uvicorn",
@@ -24,7 +24,7 @@
       "python": "${workspaceFolder}/.venv/bin/python"
     },
     {
-      "name": "DiaFoot Sentinel — API (sans reload)",
+      "name": "PodoTrace — API (sans reload)",
       "type": "debugpy",
       "request": "launch",
       "module": "uvicorn",
@@ -76,9 +76,9 @@
   ],
   "compounds": [
     {
-      "name": "DiaFoot Sentinel — tout lancer",
+      "name": "PodoTrace — tout lancer",
       "configurations": [
-        "DiaFoot Sentinel — API + Web",
+        "PodoTrace — API + Web",
         "Navigateur — Chrome sur localhost:8000"
       ],
       "stopAll": true

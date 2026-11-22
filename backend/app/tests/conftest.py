@@ -9,13 +9,13 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-TMP = Path(tempfile.mkdtemp(prefix="diafoot-test-"))
+TMP = Path(tempfile.mkdtemp(prefix="podotrace-test-"))
 os.environ["DATABASE_URL"] = f"sqlite+aiosqlite:///{TMP / 'test.db'}"
 os.environ["STORAGE_DIR"] = str(TMP / "storage")
 os.environ["ENV"] = "test"
 os.environ["DEBUG"] = "False"
 os.environ["EXPOSE_OTP_IN_RESPONSE"] = "True"
-os.environ["SECRET_KEY"] = "test-secret-key-diafoot-sentinel"
+os.environ["SECRET_KEY"] = "test-secret-key-podotrace"
 os.environ["ALLOW_SIMULATION_FALLBACK"] = "True"
 
 from fastapi.testclient import TestClient  # noqa: E402
@@ -115,7 +115,7 @@ def wound_image() -> bytes:
 
 @pytest.fixture(scope="session")
 def registered_user(client: TestClient) -> dict:
-    email = "patient.test@diafoot.health"
+    email = "patient.test@podotrace.health"
     r = client.post("/api/v1/auth/register", json={
         "email": email,
         "password": "Sentinel#2026!x",
@@ -137,7 +137,7 @@ def registered_user(client: TestClient) -> dict:
 
 @pytest.fixture(scope="session")
 def practitioner(client: TestClient) -> dict:
-    email = "dr.mansouri@diafoot.health"
+    email = "dr.mansouri@podotrace.health"
     r = client.post("/api/v1/auth/register", json={
         "email": email,
         "password": "Podologue#2026!",

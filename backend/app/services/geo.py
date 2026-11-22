@@ -102,7 +102,7 @@ async def overpass_search(
                 if places:
                     return places
         except Exception as exc:  # noqa: BLE001
-            print(f"[DiaFoot][Geo] Overpass {url} indisponible : {exc}")
+            print(f"[PodoTrace][Geo] Overpass {url} indisponible : {exc}")
     return []
 
 

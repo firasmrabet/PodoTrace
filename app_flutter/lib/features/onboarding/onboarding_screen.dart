@@ -82,7 +82,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('DIAFOOT SENTINEL', style: DfType.overline),
+                    Text('PODOTRACE', style: DfType.overline),
                     TextButton(
                       onPressed: () => _finish(skip: true),
                       child: Text('Passer',
@@ -147,7 +147,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               const SizedBox(width: 12),
                               Expanded(
                                 child: Text(
-                                  'Je comprends que DiaFoot Sentinel est un outil '
+                                  'Je comprends que PodoTrace est un outil '
                                   'd\'aide en phase de validation clinique. Il ne pose pas de '
                                   'diagnostic autonome et ne remplace pas une '
                                   'consultation. En cas d\'urgence, je contacte les '

@@ -21,9 +21,9 @@ from app.inference.pipeline import get_analyzer
 from app.models.entities import DiabetesType, RiskLevel, User, UserRole, Wound, WoundAnalysis
 from app.services.demo_images import trajectory_images
 
-DEMO_PASSWORD = "diafoot2026"
-PATIENT_EMAIL = "amine@diafoot.tn"
-PRO_EMAIL = "dr.mansouri@diafoot.tn"
+DEMO_PASSWORD = "podotrace2026"
+PATIENT_EMAIL = "amine@podotrace.tn"
+PRO_EMAIL = "dr.mansouri@podotrace.tn"
 
 # (libellé, pied, site, grade de Wagner)
 WOUNDS = [
@@ -107,7 +107,7 @@ async def seed_demo_if_empty() -> bool:
             patient.referent_practitioner_id = practitioner.id
             changed = True
 
-        patient2_email = "monia@diafoot.tn"
+        patient2_email = "monia@podotrace.tn"
         patient2 = (
             await db.execute(select(User).where(User.email == patient2_email))
         ).scalar_one_or_none()
@@ -221,7 +221,7 @@ async def seed_demo_if_empty() -> bool:
         _report_ready()
 
     if changed:
-        print("[DiaFoot] Jeu de démonstration prêt : comptes et mesures complétés.")
+        print("[PodoTrace] Jeu de démonstration prêt : comptes et mesures complétés.")
     return changed
 
 

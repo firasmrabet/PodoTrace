@@ -53,7 +53,7 @@
     {
       "label": "5 · Réinitialiser les données locales (base + images)",
       "type": "shell",
-      "command": "rm -f diafoot.db diafoot.db-wal diafoot.db-shm && rm -rf storage/images storage/reports && echo 'Base et images réinitialisées — relancez la tâche 2.'",
+      "command": "rm -f podotrace.db podotrace.db-wal podotrace.db-shm && rm -rf storage/images storage/reports && echo 'Base et images réinitialisées — relancez la tâche 2.'",
       "options": {
         "cwd": "${workspaceFolder}/backend"
       },

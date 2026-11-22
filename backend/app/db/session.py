@@ -71,10 +71,10 @@ async def init_db() -> None:
     except Exception as exc:
         if not _IS_SQLITE:
             logging.getLogger(__name__).warning(
-                "PostgreSQL indisponible (%s). Basculement automatique sur base SQLite locale (diafoot.db).",
+                "PostgreSQL indisponible (%s). Basculement automatique sur base SQLite locale (podotrace.db).",
                 exc,
             )
-            fallback_url = "sqlite+aiosqlite:///diafoot.db"
+            fallback_url = "sqlite+aiosqlite:///podotrace.db"
             _IS_SQLITE = True
             engine = _make_engine(fallback_url)
             SessionLocal = async_sessionmaker(

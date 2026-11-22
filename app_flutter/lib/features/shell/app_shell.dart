@@ -198,7 +198,7 @@ class _TopBar extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('DIAFOOT SENTINEL',
+              Text('PODOTRACE',
                   style: DfType.overline.copyWith(fontSize: 8.5)),
               const SizedBox(height: 3),
               Text(title, style: DfType.h3.copyWith(fontSize: 16)),
