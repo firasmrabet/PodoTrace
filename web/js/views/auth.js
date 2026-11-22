@@ -297,7 +297,8 @@ function paint() {
     }
   });
 
-  el('#google-btn', inner).addEventListener('click', async () => {
+  let googleInitialized = false;
+  el('#google-btn', inner)?.addEventListener('click', async () => {
     try {
       const cfg = await fetch('/config').then((r) => r.json()).catch(() => null);
       const clientId = cfg?.google_client_id;
@@ -313,24 +314,27 @@ function paint() {
         document.head.appendChild(s);
         await new Promise((resolve) => { s.onload = resolve; setTimeout(resolve, 1500); });
       }
-      window.google.accounts.id.initialize({
-        client_id: clientId,
-        callback: async (response) => {
-          try {
-            const res = await api.post('/auth/google', { id_token: response.credential });
-            finish(res);
-          } catch (err) {
-            toast(err.message || 'Échec de la connexion Google', 'err');
-          }
-        },
-      });
+
+      if (!googleInitialized && window.google?.accounts?.id) {
+        window.google.accounts.id.initialize({
+          client_id: clientId,
+          use_fedcm_for_prompt: true,
+          callback: async (response) => {
+            try {
+              const res = await api.post('/auth/google', { id_token: response.credential });
+              finish(res);
+            } catch (err) {
+              toast(err.message || 'Échec de la connexion Google', 'err');
+            }
+          },
+        });
+        googleInitialized = true;
+      }
+
       window.google.accounts.id.prompt((notification) => {
-        if (notification.isNotDisplayed()) {
-          const reason = notification.getNotDisplayedReason();
-          console.warn('[Google Sign-In] Non affiché :', reason);
-          if (reason === 'origin_not_allowed') {
-            toast(`Origine non autorisée : ajoutez ${window.location.origin} dans la Google Cloud Console (Identifiants OAuth > Origines JavaScript autorisées).`, 'err');
-          }
+        // Notification silencieuse de statut FedCM
+        if (notification.isSkippedMoment?.() || notification.isDismissedMoment?.()) {
+          console.info('[Google Sign-In] Invite fermée ou ignorée.');
         }
       });
     } catch (e) {
